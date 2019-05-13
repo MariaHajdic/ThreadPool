@@ -18,6 +18,7 @@ enum thread_pool_errcode {
 	TPOOL_ERR_HAS_TASKS,
 	TPOOL_ERR_TASK_NOT_PUSHED,
 	TPOOL_ERR_TASK_IN_POOL,
+	TPOOL_ERR_TASK_DETACHED
 };
 
 /** Thread pool API. */
@@ -120,5 +121,18 @@ thread_task_join(struct thread_task *task, void **result);
  */
 int
 thread_task_delete(struct thread_task *task);
+
+/**
+   * Detach a task so as to auto-delete it when it is finished.
+   * After detach a task can not be accessed via any functions.
+   * If it is already finished, then just delete it.
+   * @param task Task to detach.
+   * @retval 0 Success.
+   * @retval != Error code.
+   *     - TPOOL_ERR_TASK_NOT_PUSHED - task is not pushed to a
+   *       pool.
+   */
+  int
+  thread_task_detach(struct thread_task *task);
 
 #endif /* THREAD_POOL_DEFINED */
