@@ -19,6 +19,7 @@ enum thread_poool_errcode {
 	TPOOL_ERR_TASK_NOT_PUSHED,
 	TPOOL_ERR_TASK_IN_POOL,
 	TPOOL_ERR_NOT_IMPLEMENTED,
+	TPOOL_ERR_TIMEOUT,
 };
 
 /** Thread pool API. */
